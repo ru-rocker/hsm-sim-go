@@ -1,0 +1,64 @@
+# ===== SECRETS: never commit these =====
+
+# Vault unseal key and root token (plain text, simulation only)
+vault-init.json
+
+# partner/bank private keys and pre-shared key shares
+keys/
+*.pem
+*_private*
+psk-*-share*.txt
+
+# age private key and exported gpg keys
+key.txt
+*.asc
+
+# local settings and passphrases
+.env
+.env.*
+HSM_PASSPHRASE*
+
+# gpg key folders created with --homedir
+/bank/
+/partner/
+/me/
+.gnupg/
+
+# ===== program output and test files =====
+
+# demo results (contain plaintext: plain.csv, *.dec)
+out/
+
+# your test files
+files/
+
+# encrypted and decrypted copies made by the commands
+*.enc
+*.wrap
+*.jwe
+*.jwe.sig
+*.psk
+*.penc
+*.pgp
+*.gpg
+*.age
+*.dec
+
+# ===== Go build output =====
+/hsmsim
+/hsmsim.exe
+*.exe
+*.test
+*.prof
+coverage.out
+
+# ===== Vault / Docker local data =====
+vault-data/
+vault-file/
+
+# ===== editors and OS =====
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

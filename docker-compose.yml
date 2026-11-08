@@ -1,0 +1,28 @@
+services:
+  vault:
+    image: hashicorp/vault:1.17
+    container_name: hsm-sim-vault
+    command: server                       # real server mode (NOT dev mode): keys survive restarts
+    cap_add: [IPC_LOCK]
+    environment:
+      VAULT_LOCAL_CONFIG: >-
+        {"storage":{"file":{"path":"/vault/file"}},
+         "listener":{"tcp":{"address":"0.0.0.0:8200","tls_disable":true}},
+         "ui":true}
+    volumes:
+      - vault-data:/vault/file            # <- the "HSM" storage lives here
+    ports: ["8200:8200"]
+
+  app:                                    # optional: run the Go program inside Docker
+    profiles: ["app"]
+    build: .
+    depends_on:
+      vault: {condition: service_started}
+    working_dir: /work
+    volumes:
+      - ./:/work                          # files/, out/ and vault-init.json appear in your project folder
+    environment:
+      VAULT_ADDR: http://vault:8200
+
+volumes:
+  vault-data:
