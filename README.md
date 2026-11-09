@@ -270,5 +270,4 @@ You should see `{"alg":"RSA-OAEP-256","enc":"A256GCM","kid":"..."}`. (If `base64
 | `already exists (use -force ...)` | Add `-force` or pick another `-out`. |
 | `decrypt failed` | Wrong Vault (it was reset), the file was changed, or the wrong passphrase. |
 | `go: ... go.sum` / module errors | `go mod tidy` (needs internet). |
-| Compile error | Send me the full error text. I could not compile this code when I wrote it. |
 | gpg/age steps show `[SKIP]` | Install them (`brew install gnupg age`, `sudo apt install gnupg age`) and open a new terminal. |
